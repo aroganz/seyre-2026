@@ -1,0 +1,1643 @@
+:root {
+    --primary-blue: #5EA3CC;
+    --accent-orange: #E0765E;
+    --topbar-maroon: #640720;
+    --dark-blue: #24568F;
+}
+
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+.top-bar {
+    background-color: var(--topbar-maroon);
+    color: white;
+    padding: 8px 0;
+}
+.top-bar-item {
+    display: flex;
+    align-items: center;
+}
+
+.top-bar-link {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Ensures the clickable area is wide */
+}
+
+/* Ensure the orange border is visible and sharp */
+.border-sep {
+    border-left: 1px solid #e0765e !important;
+}
+.main-header {
+    background-image: url('../img/subtle-pattern.jpg'); /* Note the ../ to go from css folder to img folder */
+    background-repeat: repeat;
+    background-position: center;
+    border-bottom: 1px solid #eee; /* Adds a clean line to separate the patterned nav from the content */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Adds a professional subtle shadow */
+}
+/* Custom Header Spacing */
+.navbar-container-custom {
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+}
+
+/* Force Logo Dimensions 85x150px */
+.main-logo {
+    width: 150px;
+    height: 85px;
+    object-fit: contain; /* Ensures the SVG doesn't distort */
+    display: block;
+}
+/* Navigation Alignment */
+.navbar-nav.ms-5 {
+    margin-left: 3rem !important; /* Adjust this value to bring links closer/further from logo */
+}
+
+/* Ensure Nav Links don't get squashed */
+/* Navigation Link Styling */
+.navbar-nav .nav-link {
+    color: #24568f !important; /* Base link color */
+    text-transform: uppercase; /* Force all links to uppercase */
+    font-weight: 600;
+    font-size: 0.85rem; /* Slightly smaller for better fit in uppercase */
+    padding: 10px 15px !important;
+    transition: all 0.3s ease-in-out; /* Smooth hover effect */
+    border-radius: 4px; /* Optional: adds a slight roundness to the hover background */
+}
+.navbar-nav .nav-link:hover {
+    background-color: #5EA3CC !important; /* Hover background color */
+    color: #ffffff !important; /* Hover text color */
+}
+/* Mobile adjustments */
+@media (max-width: 991px) {
+    .navbar-container-custom {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    .main-logo {
+        width: 80px; /* Slightly smaller for mobile screens */
+        height: auto;
+    }
+    .navbar-collapse {
+        flex-grow: 0; 
+    }
+}
+
+.nav-link {
+    color: var(--dark-blue) !important;
+    font-weight: 600;
+}
+
+.nav-link:hover { color: var(--accent-orange) !important; }
+
+
+/* Hero Typography */
+.hero-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 45px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.text-blue {
+    color: #5EA3CC; /* Your specific blue */
+}
+
+.hero-text {
+    color: #ffffff;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* Ensure images cover the area and have the overlay */
+.carousel-item {
+    height: 85vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Adjust opacity for text legibility */
+}
+
+.carousel-caption {
+    z-index: 10;
+    bottom: 30%;
+}
+
+/* The READ MORE Button Base */
+.btn-slider-custom {
+    display: inline-flex !important;
+    align-items: center;
+    padding: 12px 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    color: #ffffff !important;
+    border: 2px solid #e0765e !important; /* Matches your top-bar border */
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.4s ease-in-out;
+    
+    /* Creates the left-to-right fill effect */
+    background: linear-gradient(to right, #e0765e 50%, transparent 50%) !important;
+    background-size: 200% 100% !important;
+    background-position: right bottom !important;
+}
+
+/* Hover: Fill the background and keep text white */
+.btn-slider-custom:hover {
+    background-position: left bottom !important;
+    color: #ffffff !important;
+    border-color: #e0765e !important;
+}
+
+/* Arrow Icon Animation */
+.arrow-icon {
+    display: inline-block;
+    opacity: 0;
+    transform: translateX(-15px);
+    transition: all 0.4s ease-in-out;
+}
+
+.btn-slider-custom:hover .arrow-icon {
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+/* Bento Grid Typography & Layout */
+.info-grid-section {
+    background-color: #f8f9fa;
+}
+
+.info-card {
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+
+.grid-title-primary {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #5EA3CC;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    line-height: 1.1;
+}
+
+.grid-title-secondary {
+    font-family: 'Work Sans', sans-serif; /* Ensure this font is linked in your header */
+    font-size: 30x;
+    font-weight: 700;
+    color: #24568F;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.grid-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #5EA3CC;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.grid-text {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.7;
+}
+/* Styling for the Section Button specifically */
+.info-grid-section .btn-slider-custom {
+    font-size: 16px; /* Slightly larger than the slider buttons */
+    letter-spacing: 1px;
+    color: #640720 !important;
+}
+
+.info-grid-section .btn-slider-custom:hover{
+    background-color: #640720 !important;
+    color: #ffffff !important;  
+}
+
+/* Products Section Styles */
+.products-section {
+    background-color: #ffffff;
+}
+
+.products-main-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1a3f10; /* As requested */
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.title-underline {
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-orange);
+    margin: 0 auto 40px;
+}
+
+/* Trending Card Layout */
+.product-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.4s ease;
+    height: 100%;
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.product-img-wrapper {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.product-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(26, 63, 16, 0.4));
+}
+
+.product-content {
+    padding: 30px;
+}
+
+.product-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #24568F;
+    margin-bottom: 15px;
+    min-height: 2.5rem; /* Keeps titles aligned */
+}
+
+.product-text {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.product-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--accent-orange);
+    transition: 0.3s;
+}
+
+/* Hover Effects */
+.product-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.product-card:hover .product-img {
+    transform: scale(1.1);
+}
+
+.product-link:hover {
+    color: #1a3f10;
+    letter-spacing: 1px;
+}
+
+/* Experience Section Styling */
+.experience-section {
+    background-color: #3f3f3f;
+}
+
+.exp-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+    font-weight: 800;
+    color: #5ea3cc;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.exp-text {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.25rem;
+    color: #e0e0e0;
+    line-height: 1.8;
+}
+
+/* FAQ Section */
+.faq-section {
+    background-color: #f8f9fa; /* Light grey to separate from white sections */
+}
+
+.custom-faq .accordion-item {
+    border: none;
+    background: transparent;
+}
+
+.custom-faq .accordion-button {
+    background-color: #ffffff;
+    color: var(--dark-blue);
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    padding: 20px;
+}
+
+.custom-faq .accordion-button:not(.collapsed) {
+    background-color: var(--primary-blue);
+    color: #ffffff;
+    box-shadow: none;
+}
+
+.custom-faq .accordion-button::after {
+    filter: brightness(0) saturate(100%) invert(26%) sepia(59%) saturate(836%) hue-rotate(185deg) brightness(91%) contrast(92%);
+}
+
+.custom-faq .accordion-button:not(.collapsed)::after {
+    filter: brightness(0) invert(1);
+}
+
+.custom-faq .accordion-body {
+    background-color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+    color: #555;
+    line-height: 1.7;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 25px;
+    margin-top: -5px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+}
+
+
+/* Testimonials Section Styling */
+.testimonials-section {
+    background-color: var(--primary-blue); /* #5EA3CC */
+    color: #ffffff;
+    padding: 100px 0; /* Increased padding for a more spacious, premium feel */
+}
+.min-vh-50 {
+    min-height: 50vh;
+}
+.testimonial-badge .quote-icon {
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.25);
+    line-height: 1;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.testimonial-main-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 75px;
+    font-weight: 800;
+    line-height: 0.85;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+}
+.text-solid-blue {
+    color: #24568f; /* Your requested dark blue solid color */
+    display: block;
+}
+.text-outline {
+    color: #24568f !important; /* Your requested dark blue */
+    -webkit-text-stroke: 0px !important; /* Removes the previous outline */
+    display: block;
+}
+
+.testimonial-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 15px;
+    opacity: 0.9;
+}
+/* Centering Logic for Carousel Content */
+.testimonial-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertical center */
+    min-height: 350px; /* Adjust this height to match the title column height */
+    padding: 0 50px;
+    text-align: center;
+}
+/* Right Side Carousel Styles */
+.testimonial-content {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers text inside the carousel item */
+    min-height: 300px; 
+}
+
+.testimonial-quote {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.author-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.author-title {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* Custom Carousel Controls */
+.testimonial-controls .carousel-control-prev,
+.testimonial-controls .carousel-control-next {
+    width: auto;
+    opacity: 1;
+    color: #ffffff;
+    font-size: 2rem;
+    background: none;
+    border: none;
+}
+
+.testimonial-controls .carousel-indicators button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 6px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+}
+.testimonial-controls .carousel-indicators .active {
+    background-color: #ffffff;
+}
+
+
+/* Contact CTA Section */
+/* Contact CTA Section Styling */
+.contact-cta-section {
+    background-color: var(--dark-blue); /* #24568F from your root */
+    color: #ffffff;
+    padding: 60px 0;
+}
+
+.cta-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-blue); /* #5EA3CC */
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.cta-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+/* Input Fields */
+.cta-input {
+    border-radius: 0 !important;
+    border: none !important;
+    padding: 12px 15px !important;
+    font-size: 0.9rem;
+}
+
+.cta-input::placeholder {
+    color: #999;
+}
+
+/* Submit Button Fix */
+.btn-cta-submit {
+    background-color: var(--accent-orange) !important; /* #E0765E */
+    color: #ffffff !important;
+    border-radius: 0 !important;
+    border: none !important;
+    padding: 12px 0 !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+}
+/* Hover State: Makes the orange slightly deeper/richer */
+.btn-cta-submit:hover {
+    background-color: #d15f45 !important; 
+    color: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+}
+
+
+/* Quick Info Ribbon Styling */
+.quick-info-section {
+    background-color: #ffffff;
+    border-top: 1px solid #eee;
+}
+
+.info-item {
+    padding: 10px;
+}
+
+.info-icon {
+    font-size: 2rem;
+    color: #333; /* Darker icon color as seen in screenshot */
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.info-label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.info-detail {
+    font-family: 'Segoe UI', sans-serif;
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+/* Hover effect for interactivity */
+.info-item:hover .info-icon {
+    color: var(--primary-blue);
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+/* Blog Carousel Adjustments */
+.blog-carousel-section {
+    border-top: 1px solid #f0f0f0;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+.carousel-indicators .active {
+    background-color: var(--primary-blue) !important;
+}
+
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+.product-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Blog Detail Styling */
+.blog-text-wrapper {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+.blog-text-wrapper p {
+    margin-bottom: 1.5rem;
+}
+
+.blog-text-wrapper h2, .blog-text-wrapper h3 {
+    color: var(--dark-blue);
+    margin-top: 2.5rem;
+    font-weight: 700;
+}
+
+/* Ensure any imported images from WP don't break the layout */
+.blog-text-wrapper img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+
+/* --- Blog & Pagination Branding --- */
+
+/* Archive "READ FULL ARTICLE" Links */
+.archive-list .text-primary {
+    color: var(--accent-orange) !important; /* Change from default blue to Brand Orange */
+    transition: 0.3s ease;
+}
+
+.archive-list .text-primary:hover {
+    color: var(--dark-blue) !important;
+    padding-left: 5px; /* Subtle movement effect */
+}
+
+/* Custom Pagination Styling */
+.custom-pagination .page-link {
+    color: var(--dark-blue);
+    border: 1px solid #eee;
+    padding: 10px 18px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.custom-pagination .page-item.active .page-link {
+    background-color: var(--primary-blue) !important;
+    border-color: var(--primary-blue) !important;
+    color: #ffffff !important;
+}
+
+.custom-pagination .page-link:hover {
+    background-color: var(--dark-blue);
+    color: #ffffff;
+    border-color: var(--dark-blue);
+}
+
+.custom-pagination .page-item.disabled .page-link {
+    color: #ccc;
+    background-color: #f8f9fa;
+}
+
+/* Related Insights Box Styling */
+.related-box .bg-light {
+    transition: all 0.3s ease;
+}
+
+.related-box a:hover .bg-light {
+    background-color: var(--primary-blue) !important;
+    border-color: var(--primary-blue) !important;
+}
+
+.related-box a:hover h6 {
+    color: #ffffff !important;
+}
+
+/* About Us Dropdown Custom Styling */
+
+/* --- Brochure Button: Maroon to Orange Transition --- */
+.btn-brochure-maroon {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 28px;
+    background-color: #ffffff;      /* White Background */
+    color: var(--topbar-maroon) !important; /* Maroon text in normal state */
+    border: 2px solid var(--topbar-maroon); /* Maroon Outline */
+    border-radius: 5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+/* Arrow icon color follows the text */
+.btn-brochure-maroon .arrow-icon {
+    margin-left: 15px;
+    transition: transform 0.3s ease;
+}
+
+/* HOVER STATE: Orange fill + White text */
+.btn-brochure-maroon:hover {
+    background-color: var(--accent-orange) !important;
+    border-color: var(--accent-orange) !important;
+    color: #ffffff !important; /* Text turns white ONLY on hover */
+}
+
+/* Animate the arrow on hover */
+.btn-brochure-maroon:hover .arrow-icon {
+    transform: translateX(5px);
+}
+
+.dropdown-menu {
+    border-top: 3px solid var(--primary-blue) !important;
+    border-radius: 0 0 5px 5px;
+    padding: 10px 0;
+}
+
+.dropdown-item {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--dark-blue) !important;
+    padding: 8px 20px;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: var(--primary-blue) !important;
+    color: #ffffff !important;
+    padding-left: 25px; /* Subtle slide-in effect */
+}
+
+.corporate-hero {
+    position: relative;
+    /* Change 'fixed' to 'scroll' or remove it to fix the clipping */
+    background-attachment: scroll; 
+    background-size: cover;
+    background-position: center;
+    /* Ensure the height is enough to show the image */
+    height: 40vh; 
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}   
+
+.corporate-hero .container {
+    position: relative;
+    z-index: 2; /* Forces content to stay on top of the overlay */
+}
+
+/* New Corporate Accent Styles */
+.corporate-accent-box {
+    position: relative;
+    padding-left: 35px;
+}
+
+.corporate-accent-box::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5%;
+    height: 90%;
+    width: 7px;
+    background-color: var(--accent-orange);
+    border-radius: 2px;
+}
+
+/* Title in Blue */
+.corporate-accent-box h2, 
+.corporate-accent-box .grid-title-primary,
+.corporate-accent-box .grid-title-secondary {
+    color: var(--primary-blue) !important;
+}
+
+/* Description/Text in Dark Blue */
+.corporate-accent-box p, 
+.corporate-text,
+.grid-description {
+    color: var(--dark-blue) !important;
+}
+
+.cp-title{
+    text-transform:capitalize !important;
+}
+.cp-grid-title-primary {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #5EA3CC;
+    margin-bottom: 5px;
+    line-height: 1.1;
+}
+
+.cp-grid-title-secondary {
+    font-family: 'Work Sans', sans-serif; /* Ensure this font is linked in your header */
+    font-size: 30x;
+    font-weight: 700;
+    color: #24568F;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+/* Portfolio Section Styles */
+.portfolio-bg {
+    background-color: #24568f !important;
+}
+
+.portfolio-main-title {
+    color: #6ec1e4 !important;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.portfolio-col-title {
+    position: relative;
+    padding-left: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.portfolio-col-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background-color: #e0765e;
+}
+
+.portfolio-text {
+    color: #ffffff;
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Beyond Insurance Hero */
+.forte-hero {
+    position: relative;
+    background: url('../../assets/img/our-forte.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 100px 0;
+}
+
+.forte-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.text-white {
+    color: #ffffff !important;
+}
+
+.custom-input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    padding: 10px 15px;
+}
+
+.custom-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.custom-input:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #6ec1e4;
+    color: #ffffff;
+    box-shadow: none;
+}
+/* Smooth Scrolling for Anchor Links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Ensure sections have padding for fixed headers */
+section[id] {
+    scroll-margin-top: 100px;
+}
+/* Mobile Adjustments */
+@media (max-width: 991px) {
+    .cta-title {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+    .contact-cta-section {
+        text-align: center;
+    }
+}
+
+/* Mobile Fixes for Testimonials */
+@media (max-width: 991px) {
+   .testimonials-section {
+        padding: 60px 0;
+    }
+    .testimonial-main-title {
+        font-size: 50px;
+    }
+    .testimonial-content-wrapper {
+        min-height: auto;
+        padding: 0;
+        margin-top: 40px;
+    }
+    .testimonial-quote {
+        font-size: 1.2rem;
+    }
+    .carousel-item {
+        height: 45vh;
+    }
+}
+/* Mobile responsive alignment */
+@media (max-width: 991px) {
+    .faq-section .exp-title {
+        text-align: center;
+    }
+    .faq-section .grid-description {
+        text-align: center;
+    }
+}
+
+@media (min-width: 992px) {
+    .faq-section .exp-title, 
+    .faq-section .grid-description, 
+    .faq-section .grid-text {
+        text-align: left; /* Keeps text left-aligned on desktop while column is on the right */
+        padding-left: 40px; /* Optional: adds some breathing room between accordion and text */
+    }
+}
+
+@media (max-width: 991px) {
+    .faq-section .order-1 {
+        margin-bottom: 30px; /* Adds space below the title when it stacks on top in mobile */
+    }
+}
+
+/* --- Consolidated Mobile Typography Fixes --- */
+@media (max-width: 991px) {
+    /* New Experience Section */
+    .exp-title {
+        font-size: 32px; /* Responsive reduction from 50px */
+        margin-bottom: 20px;
+    }
+    
+    .exp-text {
+        font-size: 1.1rem;
+    }
+
+    /* Bento Grid Titles */
+    .grid-title-primary {
+        font-size: 22px !important; /* Reduced from 30px */
+    }
+
+    .grid-title-secondary {
+        font-size: 22px !important; /* Fixed typo in your original 30x */
+    }
+
+    .grid-description {
+        font-size: 18px !important;
+    }
+
+    /* Hero Slider Fixes */
+    .hero-title {
+        font-size: 28px !important;
+    }
+    
+    .hero-text {
+        font-size: 1rem !important;
+    }
+
+    /* Products Section Fixes */
+    .products-main-title {
+        font-size: 24px;
+    }
+}
+
+/* Specific fix for small phones */
+@media (max-width: 576px) {
+    .exp-title {
+        font-size: 28px;
+    }
+    
+    .grid-title-primary, 
+    .grid-title-secondary {
+        font-size: 20px !important;
+    }
+}
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .grid-title-secondary { font-size: 36px; }
+    .grid-description { font-size: 24px; }
+}
+/* Footer Styles */
+.footer-section {
+    background-color: var(--dark-blue);
+    color: #ffffff;
+    padding: 60px 0 20px 0;
+    margin-top: 50px;
+}
+
+.footer-heading {
+    color: var(--primary-blue);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.footer-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--accent-orange);
+    padding-left: 5px;
+}
+
+.footer-contact {
+    list-style: none;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-contact li {
+    margin-bottom: 15px;
+}
+
+.footer-contact i {
+    color: var(--primary-blue);
+    margin-right: 10px;
+}
+
+.footer-hr {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 40px 0 20px 0;
+}
+
+.copyright-text {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.top-bar {
+    background-color: var(--topbar-maroon);
+    color: #ffffff;
+    font-size: 0.85rem; /* Professional small text */
+}
+
+/* Mission Text styling */
+.mission-text {
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+/* The orange left border separator */
+.border-sep {
+    border-left: 1px solid #e0765e;
+}
+
+.top-bar-link {
+    color: #ffffff;
+    text-decoration: none;
+    transition: 0.3s;
+    display: block; /* Makes the whole div clickable */
+}
+
+.top-bar-link:hover {
+    color: #e0765e;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Mobile Adjustment: Remove borders when columns stack on small screens */
+@media (max-width: 991px) {
+    .border-sep {
+        border-left: none;
+        border-top: 1px solid rgba(224, 118, 94, 0); /* Subtle top border for mobile stacking */
+    }
+}
+
+/* Adds a subtle fade-in line between membership sections */
+.membership-section-divider {
+    border-top: 1px solid rgba(0,0,0,0.05);
+    margin: 40px 0;
+}
+
+
+/* Compliance Page Specific Styles */
+
+/* Hero Banner */
+.compliance-hero {
+    height: 40vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* The Orange Side Border Accent */
+./* --- Compliance Page Layout Fixes --- */
+
+.compliance-hero {
+    height: 450px; /* Adjust height to prevent feeling "small" */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden; 
+}
+
+.compliance-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Subtle darkening for readability */
+    z-index: 1;
+}
+
+/* Single class for the accent box to ensure consistency */
+.compliance-accent-box {
+    position: relative;
+    padding-left: 35px; /* Space for the orange border */
+    text-align: left;   /* Forces text to align left even if parent differs */
+}
+
+/* The Pseudo-element Border */
+.compliance-accent-box::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5%;
+    height: 90%;
+    width: 7px; /* Matches the thick look in the screenshot */
+    background-color: var(--accent-orange); /* #E0765E from your root */
+    border-radius: 2px;
+}
+.text-deep-orange {
+    color: #640720 !important;
+}
+/* Responsive fixes */
+@media (max-width: 991px) {
+    .compliance-hero {
+        height: 300px;
+    }
+    .compliance-accent-box {
+        padding-left: 25px;
+    }
+}
+
+/* Custom Brand Button - Maroon Outline to Orange Fill */
+.btn-seyre-outline {
+    color: var(--topbar-maroon) !important;
+    border: 2px solid var(--topbar-maroon) !important;
+    background: transparent;
+    padding: 12px 35px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 0 !important;
+}
+
+.btn-seyre-outline i {
+    transition: transform 0.3s ease-in-out;
+}
+
+.btn-seyre-outline:hover {
+    background-color: var(--accent-orange) !important;
+    border-color: var(--accent-orange) !important;
+    color: #ffffff !important;
+}
+
+.btn-seyre-outline:hover i {
+    transform: translateX(5px);
+}
+
+/* Partners Logo Slider */
+.logo-slider {
+    overflow: hidden;
+    padding: 10px 0;
+    position: relative;
+    width: 100%;
+}
+
+.logo-track {
+    display: flex;
+    width: calc(250px * 12); /* Adjust based on logo count x width */
+    animation: scrollLogos 30s linear infinite;
+}
+
+.logo-slide {
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.logo-slide img {
+    max-height: 60px;
+    width: auto;
+    filter: grayscale(100%); /* Default Black & White */
+    opacity: 0.7;
+    transition: all 0.4s ease;
+}
+
+/* Hover Effects */
+.logo-slider:hover .logo-track {
+    animation-play-state: paused; /* Stop animation on hover */
+}
+
+.logo-slide img:hover {
+    filter: grayscale(0%); /* Show full color */
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Infinite Scroll Animation */
+@keyframes scrollLogos {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-250px * 6)); } /* Move by half the total track width */
+}
+
+/* Mobile Adjustments */
+@media (max-width: 991px) {
+    .logo-slide {
+        width: 180px;
+    }
+    .logo-track {
+        width: calc(180px * 12);
+    }
+    @keyframes scrollLogos {
+        100% { transform: translateX(calc(-180px * 6)); }
+    }
+}
+
+
+/* Emerging Footer Logo Logic */
+.footer-section {
+    background-color: var(--dark-blue);
+    position: relative;
+    padding-top: 80px; /* Increased padding to give the logo breathing room */
+}
+
+.footer-brand-pop-out {
+    position: absolute;
+    top: -50px; /* Pulls it halfway out of the top border */
+    right: 10%; /* Positions it above the 4th column area */
+    background-color: var(--dark-blue); /* Same as footer for seamless look */
+    padding: 20px 30px;
+    box-shadow: 0 -10px 20px rgba(0,0,0,0.1); /* Subtle shadow on the top edge */
+    border-radius: 8px 8px 0 0; /* Rounded top corners only */
+    z-index: 10;
+}
+
+.footer-brand-pop-out img {
+    max-height: 70px;
+    width: auto;
+}
+
+/* Mobile fix - stack it normally on small screens */
+@media (max-width: 991px) {
+    .footer-brand-pop-out {
+        position: static;
+        display: inline-block;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        right: auto;
+        transform: none;
+    }
+    .footer-section {
+        padding-top: 40px;
+        margin-top: 20px;
+    }
+}
+
+/* Footer Social Icons Customization */
+.footer-social-icon {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0; /* Keep flat corners */
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-social-icon:hover {
+    color: #ffffff;
+    background-color: #5EA3CC; /* RGB(94, 163, 204) */
+    border-color: #5EA3CC;
+    transform: translateY(-3px);
+}
+
+/* Creative Developer Credit Styling */
+.chalk-link {
+    color: var(--accent-orange); /* Using your brand orange */
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+    padding: 2px 5px;
+}
+
+.chalk-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+
+.chalk-link:hover {
+    color: #ffffff !important;
+    text-shadow: 0 0 8px rgba(224, 118, 94, 0.6);
+}
+
+.chalk-link:hover::after {
+    width: 100%;
+}
+
+.dev-signature {
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+}
+/* ==========================================
+   UPDATED NAVIGATION & DROPDOWN BRANDING
+   ========================================== */
+
+/* 1. Global / HTML Settings */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Prevents fixed header from covering anchor titles when jumping to sections */
+section[id] {
+    scroll-margin-top: 100px; 
+}
+
+/* 2. Base Dropdown Styling (Mobile & Desktop) */
+.dropdown-menu {
+    background-color: var(--dark-blue) !important;
+    padding: 0;
+    border: none;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+    min-width: 220px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.dropdown-item {
+    color: #ffffff !important;
+    background-color: var(--dark-blue) !important;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 14px 20px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: var(--accent-orange) !important;
+    color: #ffffff !important;
+    padding-left: 28px;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+/* 3. Desktop Specific (992px and up) */
+@media (min-width: 992px) {
+    /* Trigger Dropdown on Hover */
+    /* 1. Set the initial "hidden" state with animation properties */
+    .nav-item.dropdown .dropdown-menu {
+        display: block; /* We keep it block but hidden to allow transitions */
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-15px); /* Start 15px lower */
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none; /* Prevents accidental triggers when hidden */
+    }
+
+    /* 2. Set the "visible" state on hover */
+    .nav-item.dropdown:hover > .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0); /* Slide up to original position */
+        pointer-events: auto;
+    }
+
+    /* 3. Keep your existing Chevron logic */
+    .nav-item.dropdown:hover .dropdown-arrow {
+        transform: rotate(180deg);
+        color: #ffffff !important;
+    }
+}
+
+/* 4. Mobile/Off-Canvas Specific (991px and down) */
+@media (max-width: 991px) {
+    /* Keeps dropdowns expanded inside the sliding off-canvas menu */
+    .offcanvas-body .dropdown-menu {
+        display: block; 
+        position: static;
+        float: none;
+        margin: 10px;
+        border-radius: 5px;
+    }
+
+    /* Optional: Hide the small arrow on mobile for a cleaner look */
+    .dropdown-toggle::after {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   TRENDING: SLIDING PANEL MENU STYLES
+   ========================================================================== */
+
+/* The Offcanvas Container */
+.offcanvas {
+    background: #ffffff !important;
+    width: 320px !important; /* Slightly wider for a premium feel */
+    border-left: 5px solid var(--accent-orange) !important;
+}
+
+.offcanvas-header {
+    padding: 25px;
+    background: #f8f9fa;
+}
+
+.offcanvas-title {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+    color: var(--dark-blue) !important;
+    font-size: 1.2rem;
+}
+
+/* Mobile Link Styling */
+@media (max-width: 991px) {
+    .offcanvas-body {
+        padding: 0; /* Full width items */
+    }
+
+    .offcanvas-body .navbar-nav .nav-item {
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .offcanvas-body .nav-link {
+        padding: 20px 25px !important;
+        font-size: 1rem !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Sub-menu styling (The Drawer) */
+    .offcanvas-body .dropdown-menu {
+        display: none; /* Controlled by script.js */
+        background-color: #f1f5f9 !important; /* Light slate grey for hierarchy */
+        box-shadow: none !important;
+        border-radius: 0;
+        margin: 0;
+        padding: 10px 0;
+    }
+
+    .offcanvas-body .dropdown-menu.show {
+        display: block;
+        animation: slideInLeft 0.3s ease forwards;
+    }
+
+    .offcanvas-body .dropdown-item {
+        color: var(--dark-blue) !important;
+        background: transparent !important;
+        padding: 12px 45px !important; /* Indented for sub-items */
+        font-size: 0.9rem;
+        font-weight: 500;
+        border: none;
+    }
+
+    .offcanvas-body .dropdown-item:hover {
+        color: var(--accent-orange) !important;
+        background: rgba(224, 118, 94, 0.05) !important;
+    }
+
+    /* Mobile Contact Button in Menu */
+    .offcanvas-body .btn-primary {
+        margin: 30px 25px;
+        width: calc(100% - 50px);
+        display: block;
+    }
+}
+
+/* --- Smooth Animations --- */
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* 1. UNIVERSAL STYLES (Applies to all) */
+.navbar-toggler {
+    padding: 10px;
+    background: rgba(94, 163, 204, 0.1);
+    border-radius: 8px;
+}
+
+.dropdown-arrow {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease-in-out;
+    display: inline-block;
+}
+
+.border-sep {
+    border-left: 1px solid rgba(224, 118, 94, 0.4) !important;
+}
+
+/* 2. DESKTOP ONLY (992px and up) */
+@media (min-width: 992px) {
+    .nav-item.dropdown:hover .dropdown-arrow {
+        transform: rotate(180deg);
+        color: #ffffff !important; /* Arrow turns white on hover */
+    }
+}
+
+/* 3. MOBILE ONLY (991px and down) */
+@media (max-width: 991px) {
+    /* Top Bar 2x2 Grid Logic */
+    .top-bar .mission-text, 
+    .top-bar-link {
+        font-size: 9px !important;
+        line-height: 1.2;
+    }
+
+    .top-bar-item {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    /* Row/Column Divider Logic for 2x2 */
+    .border-mobile-top {
+       border-top: 1px solid rgba(224, 118, 94, 0) !important; 
+    }
+
+    .col-6:nth-child(odd) {
+        border-left: none !important;
+    }
+    
+    .col-6:nth-child(even) {
+        border-left: 1px solid rgba(224, 118, 94, 0.3) !important;
+    }
+
+    /* Mobile Drawer Arrow Rotation & Color */
+    .nav-item.dropdown .dropdown-menu.show + .nav-link .dropdown-arrow,
+    .nav-item.dropdown:has(.dropdown-menu.show) .dropdown-arrow {
+        transform: rotate(180deg);
+        color: #ffffff !important;
+    }
+    
+    .nav-link.d-flex {
+        width: 100%;
+    }
+}
