@@ -1,5 +1,27 @@
 <?php 
-$conn = new mysqli("localhost", "root", "", "seyre_local");
+// 1. Environment & Base URL Detection
+$host = $_SERVER['HTTP_HOST'];
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
+
+if ($host == 'localhost') {
+    $db_host = "localhost"; $db_user = "root"; $db_pass = ""; $db_name = "seyre_local";
+    $base_url = "http://localhost/seyre-global-2026/";
+} else {
+    $db_host = "localhost"; $db_user = "SeyRe"; $db_pass = "@marnath1969$%"; $db_name = "colorcha_seyre2026"; 
+    $base_url = $protocol . $host . "/seyre-2026/";
+}
+
+// 2. Database Connection (If needed for content, otherwise optional)
+$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+if ($conn->connect_error) { die("Connection failed"); }
+$conn->set_charset("utf8mb4");
+
+// 3. SET SEO DATA BEFORE HEADER
+// This ensures your custom titles show up in Google
+$page_seo_title = "Our Memberships & Affiliations | Seychelles Reinsurance Global";
+$page_seo_desc  = "SeyRe is proud to be affiliated with leading global reinsurance bodies. Explore our professional memberships and industry certifications.";
+
+// 4. Include Header (relative path to reach root includes)
 include('../../includes/header.php'); 
 ?>
 

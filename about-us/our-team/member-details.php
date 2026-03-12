@@ -1,17 +1,39 @@
 <?php 
-// 1. Connection
-$conn = new mysqli("localhost", "root", "", "seyre_local");
-if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); }
+// 1. Environment Detection & Database Connection
+$host = $_SERVER['HTTP_HOST'];
+if ($host == 'localhost') {
+    $db_host = "localhost"; $db_user = "root"; $db_pass = ""; $db_name = "seyre_local";
+} else {
+    $db_host = "localhost"; $db_user = "SeyRe"; $db_pass = "@marnath1969$%"; $db_name = "colorcha_seyre2026"; 
+}
+
+$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$conn->set_charset("utf8");
 
 include('../../includes/header.php'); 
 
-// 2. Get ID from URL (e.g., member-details.php?id=16062)
+// 2. Get ID from URL & Sanitize
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-$query = $conn->query("SELECT * FROM team_members WHERE id = $id");
-$member = $query->fetch_assoc();
 
+// Use prepared statement or at least verify ID > 0
+$member = null;
+if ($id > 0) {
+    $query = $conn->query("SELECT * FROM team_members WHERE id = $id");
+    $member = $query->fetch_assoc();
+}
+
+// 3. Error Handling for missing member
 if (!$member) {
-    echo "<div class='container mt-5 pt-5 text-center'><h3>Member not found.</h3><a href='index.php'>Back to Team</a></div>";
+    echo "<div class='container mt-5 pt-5 text-center' style='min-height: 50vh;'>
+            <h3>Member not found.</h3>
+            <p class='text-muted'>The requested profile may have moved or no longer exists.</p>
+            <a href='index.php' class='btn btn-primary mt-3'>Back to Team</a>
+          </div>";
     include('../../includes/footer.php');
     exit;
 }
@@ -24,11 +46,12 @@ if (!$member) {
                 <div class="member-detail-img shadow-lg rounded overflow-hidden">
                     <img src="../../assets/img/team/<?php echo basename($member['featured_image_url']); ?>" 
                          class="img-fluid w-100" 
-                         alt="<?php echo htmlspecialchars($member['name']); ?>">
+                         alt="<?php echo htmlspecialchars($member['name']); ?>"
+                         onerror="this.src='../../assets/img/team/placeholder.jpg';">
                 </div>
                 <div class="mt-4 text-center">
                     <?php if(!empty($member['linkedin_url'])): ?>
-                        <a href="<?php echo $row['linkedin_url']; ?>" target="_blank" class="btn btn-primary rounded-pill px-4">
+                        <a href="<?php echo htmlspecialchars($member['linkedin_url']); ?>" target="_blank" class="btn btn-primary rounded-pill px-4">
                             <i class="bi bi-linkedin me-2"></i>LinkedIn Profile
                         </a>
                     <?php endif; ?>
@@ -41,8 +64,11 @@ if (!$member) {
                     <?php echo htmlspecialchars($member['job_title']); ?>
                 </h4>
                 
-                <div class="bio-content lead text-muted" style="line-height: 1.8; text-align: justify;">
-                    <?php echo nl2br($member['bio']); ?>
+                <div class="grid-text" style="line-height: 1.8; text-align: justify;">
+                    <?php 
+                        // Using nl2br to preserve paragraph breaks from the database
+                        echo nl2br($member['bio']); 
+                    ?>
                 </div>
 
                 <div class="mt-5 pt-4 border-top">
@@ -55,4 +81,7 @@ if (!$member) {
     </div>
 </section>
 
-<?php include('../../includes/footer.php'); ?>
+<?php 
+$conn->close();
+include('../../includes/footer.php'); 
+?>

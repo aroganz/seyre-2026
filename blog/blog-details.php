@@ -1,26 +1,39 @@
 <?php 
-include('../includes/header.php'); 
-$conn = new mysqli("localhost", "root", "", "seyre_local");
-
-// 1. Get the slug from the URL
-$slug = isset($_GET['slug']) ? $conn->real_escape_string($_GET['slug']) : '';
-
-// 2. Error handling: If slug is empty
-if (empty($slug)) {
-    echo "<div class='container py-5 mt-5 text-center'><h2>No article specified.</h2><a href='index.php' class='btn btn-primary'>Return to Blog</a></div>";
-    include('../includes/footer.php');
-    exit;
+// 1. Environment Detection & Connection
+$host = $_SERVER['HTTP_HOST'];
+if ($host == 'localhost') {
+    $db_host = "localhost"; $db_user = "root"; $db_pass = ""; $db_name = "seyre_local";
+} else {
+    $db_host = "localhost"; $db_user = "SeyRe"; $db_pass = "@marnath1969$%"; $db_name = "colorcha_seyre2026"; 
 }
 
-// 3. Query using the post_name column
-$sql = "SELECT ID, post_title, post_content, post_date FROM p WHERE post_name = '$slug' LIMIT 1";
+$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+if ($conn->connect_error) { die("Connection failed"); }
+$conn->set_charset("utf8mb4");
+
+// 2. Get the slug safely
+$slug = isset($_GET['slug']) ? $conn->real_escape_string($_GET['slug']) : '';
+
+// 3. Query the article (INCLUDING the new SEO columns)
+$sql = "SELECT ID, post_title, post_content, post_date, seo_title, seo_desc FROM p WHERE post_name = '$slug' LIMIT 1";
 $result = $conn->query($sql);
 $post = $result->fetch_assoc();
 
-if (!$post) {
-    echo "<div class='container py-5 mt-5 text-center'><h2>Article Not Found</h2><p>We couldn't find an article with the slug: <b>$slug</b></p><a href='index.php' class='btn btn-primary'>Back to Blog</a></div>";
+if ($post) {
+    // 4. Set SEO variables for the header to pick up
+    $page_seo_title = !empty($post['seo_title']) ? $post['seo_title'] : $post['post_title'] . " | SeyRe";
+    $page_seo_desc  = !empty($post['seo_desc']) ? $post['seo_desc'] : "";
 } else {
-    $post_id = $post['ID']; // Assigned for use in Related Articles section
+    $page_seo_title = "Article Not Found";
+}
+
+// 5. NOW include the header (it will now see $page_seo_title)
+include('../includes/header.php'); 
+
+if (!$post) {
+    echo "<div class='container py-5 mt-5 text-center'><h2>Article Not Found</h2><a href='index.php' class='btn btn-primary'>Back to Blog</a></div>";
+} else {
+    $post_id = $post['ID']; 
 ?>
 
 <section class="blog-details-header py-5 bg-light border-bottom mt-5">
@@ -42,20 +55,20 @@ if (!$post) {
                     <h4 class="fw-bold mb-4">Related Insights</h4>
                     <div class="row g-3">
                         <?php 
-                        // Use $post_id to exclude the current article from suggestions
-                        // blog-details.php - Near Line 44
-// Change $current_id to $post_id
-$rel_sql = "SELECT post_title, post_name FROM p WHERE ID != $post_id ORDER BY RAND() LIMIT 3";
+                        // Fetch related articles excluding the current one
+                        $rel_sql = "SELECT post_title, post_name FROM p WHERE ID != $post_id ORDER BY RAND() LIMIT 3";
                         $rel_res = $conn->query($rel_sql);
-                        while($rel = $rel_res->fetch_assoc()): ?>
-                            <div class="col-md-4">
-                                <a href="blog-details.php?slug=<?php echo $rel['post_name']; ?>" class="text-decoration-none">
-                                    <div class="p-3 bg-light rounded h-100 border text-center">
-                                        <h6 class="text-dark mb-0"><?php echo htmlspecialchars($rel['post_title']); ?></h6>
-                                    </div>
-                                </a>
-                            </div>
-                        <?php endwhile; ?>
+                        if ($rel_res):
+                            while($rel = $rel_res->fetch_assoc()): ?>
+                                <div class="col-md-4">
+                                    <a href="blog-details.php?slug=<?php echo $rel['post_name']; ?>" class="text-decoration-none">
+                                        <div class="p-3 bg-light rounded h-100 border text-center">
+                                            <h6 class="text-dark mb-0"><?php echo htmlspecialchars($rel['post_title']); ?></h6>
+                                        </div>
+                                    </a>
+                                </div>
+                            <?php endwhile; 
+                        endif; ?>
                     </div>
                 </div>
             </div>
@@ -64,6 +77,11 @@ $rel_sql = "SELECT post_title, post_name FROM p WHERE ID != $post_id ORDER BY RA
 </section>
 
 <?php 
+} // End if($post)
+
+// 4. Close connection at the VERY end
+if (isset($conn) && $conn instanceof mysqli) {
+    $conn->close(); 
 }
 include('../includes/footer.php'); 
 ?>

@@ -5,6 +5,15 @@
     --dark-blue: #24568F;
 }
 
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    overflow-x: hidden; /* Prevents the horizontal scroll that causes the 'zoom out' */
+    width: 100%;
+}
+
 body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
 .top-bar {
@@ -274,7 +283,7 @@ body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
 .product-img-wrapper {
     position: relative;
-    height: 220px;
+    height: 420px !important;
     overflow: hidden;
 }
 
@@ -788,6 +797,13 @@ body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     overflow: hidden;
 }   
 
+@media (max-width: 768px) {
+    .corporate-hero {
+        height: auto !important;
+        min-height: 250px !important;
+        background-attachment: scroll !important; /* Fixed background-attachment breaks mobile scaling */
+    }
+}
 .corporate-hero .container {
     position: relative;
     z-index: 2; /* Forces content to stay on top of the overlay */
@@ -1608,13 +1624,16 @@ section[id] {
     /* Top Bar 2x2 Grid Logic */
     .top-bar .mission-text, 
     .top-bar-link {
-        font-size: 9px !important;
+        font-size: 10px !important;
         line-height: 1.2;
+        display: block;
+        text-align: center;
     }
 
     .top-bar-item {
         padding-left: 10px;
         padding-right: 10px;
+        justify-content: center;
     }
 
     /* Row/Column Divider Logic for 2x2 */

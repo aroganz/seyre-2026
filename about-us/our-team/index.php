@@ -1,22 +1,33 @@
 <?php 
-// 1. Connection
-$conn = new mysqli("localhost", "root", "", "seyre_local");
+// 1. Database Connection (Environment Aware)
+$host = $_SERVER['HTTP_HOST'];
+if ($host == 'localhost') {
+    $db_host = "localhost"; $db_user = "root"; $db_pass = ""; $db_name = "seyre_local";
+} else {
+    $db_host = "localhost"; $db_user = "SeyRe"; $db_pass = "@marnath1969$%"; $db_name = "colorcha_seyre2026"; 
+}
+
+$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    // Graceful error handling instead of Fatal Error
+    $result = false;
+} else {
+    $conn->set_charset("utf8");
+    $result = $conn->query("SELECT * FROM team_members ORDER BY id ASC");
 }
 
 include('../../includes/header.php'); 
-
-// 2. Fetch data sorted by our manual sort_order
-$result = $conn->query("SELECT * FROM team_members ORDER BY sort_order ASC, name ASC");
 ?>
 
 <section class="py-5 mt-5">
     <div class="container py-lg-5">
         <div class="text-center mb-5">
             <h2 class="products-main-title text-uppercase">Our Management Team</h2>
-            <div class="title-underline"></div>
+            <div class="title-underline mx-auto"></div>
+            <p class="text-muted mx-auto mt-3" style="max-width: 800px;">
+                Our leadership brings together diverse expertise and decades of experience in the global reinsurance market.
+            </p>
         </div>
         
         <div class="row g-4 justify-content-center">
@@ -54,7 +65,7 @@ $result = $conn->query("SELECT * FROM team_members ORDER BY sort_order ASC, name
                             </p>
                             
                             <div class="mt-3">
-                                <a href="<?php echo $detail_url; ?>" class="product-link">
+                                <a href="<?php echo $detail_url; ?>" class="product-link text-decoration-none">
                                     READ FULL BIO <i class="bi bi-arrow-right ms-1"></i>
                                 </a>
                             </div>
@@ -71,4 +82,7 @@ $result = $conn->query("SELECT * FROM team_members ORDER BY sort_order ASC, name
     </div>
 </section>
 
-<?php include('../../includes/footer.php'); ?>
+<?php 
+if (isset($conn) && $conn instanceof mysqli) { $conn->close(); }
+include('../../includes/footer.php'); 
+?>
