@@ -1,17 +1,39 @@
-<?php
-// Base URL for XAMPP
-$base_url = "http://localhost/seyre-global-2026/";
-?>
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seychelles Reinsurance Global</title>
+    
+    <?php
+    // 1. Define Base URL first
+$host = $_SERVER['HTTP_HOST'];
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
+
+if ($host == 'localhost') {
+    $base_url = "http://localhost/seyre-global-2026/";
+} else {
+    $base_url = $protocol . $host . "/seyre-2026/";
+}
+        // SEO Dynamic Logic
+        $default_title = "Seychelles Reinsurance Global";
+        $default_desc  = "Leading reinsurance brokerage providing global risk solutions and management.";
+        
+        $meta_title = (isset($page_seo_title) && !empty($page_seo_title)) ? $page_seo_title : $default_title;
+        $meta_desc  = (isset($page_seo_desc) && !empty($page_seo_desc)) ? $page_seo_desc : $default_desc;
+    ?>
+
+    <title><?php echo htmlspecialchars($meta_title); ?></title>
+    <meta name="description" content="<?php echo htmlspecialchars($meta_desc); ?>">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3TJF7HMTEC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3TJF7HMTEC');
+    </script>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/style.css?v=1.1">
 </head>
 <body>
 
@@ -97,7 +119,7 @@ $base_url = "http://localhost/seyre-global-2026/";
                             <li><a class="dropdown-item" href="<?php echo $base_url; ?>corporate-solutions/#policy-structuring">POLICY STRUCTURING</a></li>
                             <li><a class="dropdown-item" href="<?php echo $base_url; ?>corporate-solutions/#wording-reviews">WORDING REVIEWS</a></li>
                             <li><hr class="dropdown-divider bg-white opacity-25"></li>
-                            <li><a class="dropdown-item" href="<?php echo $base_url; ?>corporate-solutions/faq/">REINSURANCE SOLUTIONS FAQ</a></li>
+                            <li><a class="dropdown-item" href="<?php echo $base_url; ?>corporate-solutions/reinsurance-solutions-faq/">REINSURANCE SOLUTIONS FAQ</a></li>
                         </ul>
                     </li>
                     

@@ -1,0 +1,24 @@
+RewriteEngine On
+RewriteBase /seyre-2026/
+
+# 1. Redirect old WordPress-style blog posts to the new system
+# Matches: seyre-2026/any-post-slug/ -> blog-details.php?slug=any-post-slug
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^blog/([^/.]+)/?$ blog-details.php?slug=$1 [L,QSA]
+
+# 2. Redirect root blog requests to the blog index
+RewriteRule ^blog/?$ blog/index.php [L]
+
+# 3. Handle About Us sub-directories
+# This ensures that /about-us/membership/ points to the correct index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^about-us/([^/.]+)/?$ about-us/$1/index.php [L]
+
+# 4. Global Fallback: If a user enters a slug without a folder, check for a PHP file
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php [L]
+# Clean Blog URLs
+RewriteRule ^blog/([^/.]+)/?$ blog-details.php?slug=$1 [L,QSA]

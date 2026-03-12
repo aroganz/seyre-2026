@@ -1,5 +1,6 @@
 <?php include('includes/header.php'); ?>
 
+
 <main>
     <div id="heroSlider" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -398,15 +399,40 @@
 </section>
 
 <?php
-$conn = new mysqli("localhost", "root", "", "seyre_local");
-$blog_posts = [];
+// 1. Environment Detection (Put this around line 400 where the error is)
+$host = $_SERVER['HTTP_HOST'];
 
-if (!$conn->connect_error) {
-    // Fetching the latest 9 posts from your imported table 'p'
-    $sql = "SELECT ID, post_title, post_content, post_date FROM p ORDER BY post_date DESC LIMIT 9";
-    $result = $conn->query($sql);
-    if ($result && $result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) { $blog_posts[] = $row; }
+if ($host == 'localhost') {
+    $db_host = "localhost";
+    $db_user = "root";
+    $db_pass = "";
+    $db_name = "seyre_local";
+} else {
+    // GoDaddy Production Credentials
+    $db_host = "localhost"; 
+    $db_user = "SeyRe"; 
+    $db_pass = "@marnath1969$%"; 
+    $db_name = "colorcha_seyre2026"; 
+}
+
+// 2. Establish Connection without '@' so we can see if it fails
+$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+
+if ($conn->connect_error) {
+    // Instead of crashing (Fatal Error), we show a clean message
+    echo "";
+    $blog_posts = []; // Fallback so the carousel doesn't crash
+} else {
+    $conn->set_charset("utf8mb4");
+    
+    // 3. Your existing Query (example)
+    $query = "SELECT ID, post_title, post_content, post_date, post_name FROM p ORDER BY post_date DESC LIMIT 9";
+    $result = $conn->query($query);
+    $blog_posts = [];
+    if ($result) {
+        while($row = $result->fetch_assoc()) {
+            $blog_posts[] = $row;
+        }
     }
 }
 ?>
@@ -443,9 +469,9 @@ if (!$conn->connect_error) {
                                                         echo substr($excerpt, 0, 150) . '...'; 
                                                     ?>
                                                 </div>
-                                                <a href="blog/blog-details.php?id=<?php echo $post['ID']; ?>" class="product-link mt-auto fw-bold">
-                                             READ ARTICLE <i class="bi bi-arrow-right ms-2"></i>
-                                                </a>
+                                                <a href="blog/blog-details.php?slug=<?php echo $post['post_name']; ?>" class="product-link mt-auto fw-bold">
+    READ ARTICLE <i class="bi bi-arrow-right ms-2"></i>
+</a>
                                             </div>
                                         </div>
                                     </div>
@@ -470,4 +496,6 @@ if (!$conn->connect_error) {
         <?php endif; ?>
     </div>
 </section>
-<?php include('includes/footer.php'); ?>
+<?php 
+include __DIR__ . '/includes/footer.php';
+?>

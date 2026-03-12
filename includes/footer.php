@@ -52,7 +52,7 @@
                     <li class="mb-2"><a href="<?php echo $base_url; ?>corporate-solutions/" class="text-white text-decoration-none opacity-75">Corporate Solutions</a></li>
                     <li class="mb-2"><a href="<?php echo $base_url; ?>products/" class="text-white text-decoration-none opacity-75">Products</a></li>
                     <li class="mb-2"><a href="<?php echo $base_url; ?>our-forte/" class="text-white text-decoration-none opacity-75">Our Forte</a></li>
-                    <li class="mb-2"><a href="<?php echo $base_url; ?>our-team/" class="text-white text-decoration-none opacity-75">Our Team</a></li>
+                    <li class="mb-2"><a href="<?php echo $base_url; ?>about-us/our-team/" class="text-white text-decoration-none opacity-75">Our Team</a></li>
                     <li class="mb-2"><a href="<?php echo $base_url; ?>blog/" class="text-white text-decoration-none opacity-75">Blog</a></li>
                 </ul>
             </div>

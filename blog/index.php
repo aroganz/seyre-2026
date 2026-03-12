@@ -1,35 +1,62 @@
-<?php 
+<?php
 include('../includes/header.php'); 
-$conn = new mysqli("localhost", "root", "", "seyre_local");
 
-// 1. Pagination Settings
-$limit = 9; // Number of articles per page
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-if ($page < 1) $page = 1;
-$offset = ($page - 1) * $limit;
+$host = $_SERVER['HTTP_HOST'];
+$post_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$post = null;
 
-$searchTerm = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
-
-// 2. Build Query with LIMIT and OFFSET
-$whereClause = "";
-if (!empty($searchTerm)) {
-    $whereClause = "WHERE post_title LIKE '%$searchTerm%' OR post_content LIKE '%$searchTerm%'";
+if ($host == 'localhost') {
+    $db_host = "localhost";
+    $db_user = "root";
+    $db_pass = "";
+    $db_name = "seyre_local";
+} else {
+    $db_host = "localhost"; 
+    $db_user = "SeyRe"; 
+    $db_pass = "@marnath1969$%"; 
+    $db_name = "colorcha_seyre2026"; 
 }
 
-// Get total records for pagination links
-$total_results_query = "SELECT COUNT(*) as total FROM p $whereClause";
-$total_results_res = $conn->query($total_results_query);
-$total_rows = $total_results_res->fetch_assoc()['total'];
-$total_pages = ceil($total_rows / $limit);
+$conn = @new mysqli($db_host, $db_user, $db_pass, $db_name);
 
-// Fetch only the articles for the current page
-$sql = "SELECT ID, post_title, post_content, post_date, post_name 
-        FROM p 
-        $whereClause 
-        ORDER BY post_date DESC 
-        LIMIT $limit OFFSET $offset";
+// Check if connection actually worked before proceeding
+if (!$conn || $conn->connect_error) {
+    echo "";
+    // We stop here or show a friendly message so the whole page doesn't crash
+} else {
+    $conn->set_charset("utf8mb4");
+
+    // 1. Pagination Settings
+    $limit = 9; 
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    if ($page < 1) $page = 1;
+    $offset = ($page - 1) * $limit;
+
+    $searchTerm = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
+
+    // 2. Build Query
+    $whereClause = "";
+    if (!empty($searchTerm)) {
+        $whereClause = "WHERE post_title LIKE '%$searchTerm%' OR post_content LIKE '%$searchTerm%'";
+    }
+
+    // Get total records
+    $total_results_query = "SELECT COUNT(*) as total FROM p $whereClause";
+    $total_results_res = $conn->query($total_results_query);
+    $total_rows = $total_results_res ? $total_results_res->fetch_assoc()['total'] : 0;
+    $total_pages = ceil($total_rows / $limit);
+
+    // Fetch articles
+    $sql = "SELECT ID, post_title, post_content, post_date, post_name 
+            FROM p 
+            $whereClause 
+            ORDER BY post_date DESC 
+            LIMIT $limit OFFSET $offset";
+
+    $result = $conn->query($sql);
 
 $result = $conn->query($sql);
+}
 ?>
 
 <section class="archive-header py-5 bg-dark text-white mt-5">
@@ -99,4 +126,8 @@ $result = $conn->query($sql);
     </div>
 </section>
 
-<?php include('../includes/footer.php'); ?>
+<?php 
+if (isset($conn) && $conn instanceof mysqli) {
+    $conn->close(); 
+}
+include('../includes/footer.php'); ?>

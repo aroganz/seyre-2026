@@ -1,0 +1,30 @@
+[17-Feb-2026 11:25:33 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: NO) in /home/colorchalk/public_html/seyre-2026/blog/index.php:3
+Stack trace:
+#0 /home/colorchalk/public_html/seyre-2026/blog/index.php(3): mysqli->__construct()
+#1 {main}
+  thrown in /home/colorchalk/public_html/seyre-2026/blog/index.php on line 3
+[17-Feb-2026 11:28:18 UTC] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home/colorchalk/public_html/seyre-2026/blog/index.php:50
+Stack trace:
+#0 /home/colorchalk/public_html/seyre-2026/blog/index.php(50): mysqli->query()
+#1 {main}
+  thrown in /home/colorchalk/public_html/seyre-2026/blog/index.php on line 50
+[17-Feb-2026 11:28:26 UTC] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home/colorchalk/public_html/seyre-2026/blog/index.php:50
+Stack trace:
+#0 /home/colorchalk/public_html/seyre-2026/blog/index.php(50): mysqli->query()
+#1 {main}
+  thrown in /home/colorchalk/public_html/seyre-2026/blog/index.php on line 50
+[17-Feb-2026 11:28:39 UTC] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home/colorchalk/public_html/seyre-2026/blog/index.php:50
+Stack trace:
+#0 /home/colorchalk/public_html/seyre-2026/blog/index.php(50): mysqli->query()
+#1 {main}
+  thrown in /home/colorchalk/public_html/seyre-2026/blog/index.php on line 50
+[17-Feb-2026 11:30:38 UTC] PHP Parse error:  Unclosed '{' on line 26 in /home/colorchalk/public_html/seyre-2026/blog/index.php on line 128
+[17-Feb-2026 11:30:42 UTC] PHP Parse error:  Unclosed '{' on line 26 in /home/colorchalk/public_html/seyre-2026/blog/index.php on line 128
+[17-Feb-2026 11:31:18 UTC] PHP Parse error:  Unclosed '{' on line 26 in /home/colorchalk/public_html/seyre-2026/blog/index.php on line 132
+[17-Feb-2026 11:31:21 UTC] PHP Parse error:  Unclosed '{' on line 26 in /home/colorchalk/public_html/seyre-2026/blog/index.php on line 132
+[17-Feb-2026 11:32:34 UTC] PHP Parse error:  Unclosed '{' on line 26 in /home/colorchalk/public_html/seyre-2026/blog/index.php on line 132
+[17-Feb-2026 11:33:19 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: NO) in /home/colorchalk/public_html/seyre-2026/blog/blog-details.php:3
+Stack trace:
+#0 /home/colorchalk/public_html/seyre-2026/blog/blog-details.php(3): mysqli->__construct()
+#1 {main}
+  thrown in /home/colorchalk/public_html/seyre-2026/blog/blog-details.php on line 3
